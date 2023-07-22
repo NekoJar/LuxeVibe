@@ -51,10 +51,12 @@ export const CartContext = createContext({
 const CART_ACTION_TYPES = {
   SET_CART_ITEMS: 'SET_CART_ITEMS',
   SET_IS_CART_OPEN: 'SET_IS_CART_OPEN',
+  SET_CART_COUNT: 'SET_CART_COUNT',
+  SET_CART_TOTAL: 'SET_CART_TOTAL',
 }
 
 const INITIAL_STATE = {
-  isCartOpen: true,
+  isCartOpen: false,
   cartItems: [],
   cartCount: 0,
   cartTotal: 0,
@@ -87,14 +89,6 @@ export const CartProvider = ({ children }) => {
 
 
     dispatch(
-      // {
-      //   type: 'CART_ACTION_TYPES.SET_CART_ITEMS',
-      //   payload: {
-      //     cartItems: newCartItems,
-      //     cartCount: newCartCount,
-      //     cartTotal: newCartTotal 
-      // }
-      // })
       createAction("CART_ACTION_TYPES.SET_CART_ITEMS", {
         cartItems: newCartItems,
         cartTotal: newCartTotal,
