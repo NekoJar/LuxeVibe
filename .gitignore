@@ -10,7 +10,7 @@
 
 # production
 /build
-
+/my-app
 .env
 
 # misc
