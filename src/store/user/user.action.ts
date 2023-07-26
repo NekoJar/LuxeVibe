@@ -1,8 +1,7 @@
 import { USER_ACTION_TYPES } from './user.types';
 import { createAction, withMatcher, Action, ActionWithPayload} from '../../utils/reducer/reducer.utils';
 import { UserData, AdditionalInformation } from '../../utils/firebase/firebase.utils';
-import { type } from 'os';
-import { Sign } from 'crypto';
+import { User } from 'firebase/auth';
 
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>
 
@@ -18,7 +17,7 @@ export type SignInSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_IN_SUCCESS,
 
 export type SignInFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_IN_FAILED, Error>
 
-export type SignUpSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user: UserData, additionalDetails: AdditionalInformation }>
+export type SignUpSuccess = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user: User, additionalDetails: AdditionalInformation }>
 
 export type SignUpFailed = ActionWithPayload<USER_ACTION_TYPES.SIGN_UP_FAILED, Error>
 
@@ -40,7 +39,7 @@ export const googleSignInStart = withMatcher((): GoogleSignInStart =>
 export const emailSignInStart = withMatcher((email: string, password: string): EmailSignStart =>
   createAction(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, { email, password }));
 
-export const signInSuccess = withMatcher((user: UserData): SignInSuccess =>
+export const signInSuccess = withMatcher((user: UserData & {id: string}): SignInSuccess =>
   createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user));
 
 export const signInFailed = withMatcher((error: Error): SignInFailed =>
@@ -53,7 +52,7 @@ export const signUpStart = withMatcher((email: string, password: string, display
     displayName,
   }));
 
-export const signUpSuccess = withMatcher((user: UserData, additionalDetails: AdditionalInformation): SignUpSuccess =>
+export const signUpSuccess = withMatcher((user: User, additionalDetails: AdditionalInformation): SignUpSuccess =>
   createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user, additionalDetails }));
 
 export const signUpFailed = withMatcher((error: Error): SignUpFailed =>

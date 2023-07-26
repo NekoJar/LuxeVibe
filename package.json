@@ -14,8 +14,11 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/redux-logger": "^3.0.9",
+    "@types/styled-components": "^5.1.26",
     "dotenv": "^16.3.1",
     "firebase": "^10.0.0",
+    "patch-package": "^7.0.2",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
@@ -29,7 +32,8 @@
     "reselect": "^4.1.8",
     "sass": "^1.63.6",
     "stripe": "^12.14.0",
-    "styled-components": "^6.0.4",
+    "styled-components": "^6.0.0-alpha.7",
+    "typed-redux-saga": "^1.5.0",
     "typescript": "^5.1.6",
     "web-vitals": "^2.1.4"
   },
@@ -37,7 +41,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-macros": "^3.1.0"
   }
 }
